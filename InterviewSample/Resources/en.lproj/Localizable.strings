@@ -1,0 +1,17 @@
+"Search.Title" = "Music demo app";
+"Search.Placeholder" = "Search";
+"Search.StartNewSearch" = "Start searching";
+"Search.NotFound" = "Not found";
+
+"Artist.Albums" = "Albums";
+"Artist.Songs" = "Songs";
+
+"MediaKind.Album" = "Album";
+"MediaKind.Song" = "Song";
+"MediaKind.Arrist" = "Arrist";
+"MediaKind.Collection" = "Collection";
+
+"Common.OK" = "OK";
+"Common.Error" = "Error";
+"Common.DevelopmentAlert" = "This section is under development";
+
