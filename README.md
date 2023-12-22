@@ -1,6 +1,5 @@
-# InterviewSample
-Hi! This is my demo app for the interviews. It is a music app built on top of [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/Searching.html#//apple_ref/doc/uid/TP40017632-CH5-SW1). It is build in SwiftUI and MVVM+Coordinator architecture
-
+# Music App Demo
+Hi! This is a demo music player app. It is built on top of [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/Searching.html#//apple_ref/doc/uid/TP40017632-CH5-SW1).
 ![image](preview/readme.png)
 ![image](preview/player.gif)
 
@@ -8,6 +7,10 @@ Hi! This is my demo app for the interviews. It is a music app built on top of [i
 - Search screen with infinite scroll, refresh, debouncing and error handling
 - Artist page shows 10 albums and 10 songs of given artist
 - Player screen with fake audio player
+
+## Common:
+- Built is SwiftUI and MVVM-Coordinator architecture
+- [Nuke](https://github.com/kean/Nuke) is used for loading images
 
 ## Simplifications and limitations
 - App uses native localizable strings approach and only system images. For real project i would go with swiftgen or R.swift to have type-safe images and localizable strings
