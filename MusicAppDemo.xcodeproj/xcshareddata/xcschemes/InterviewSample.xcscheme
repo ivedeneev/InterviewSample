@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D65346852B1A863E00467B74"
-               BuildableName = "InterviewSample.app"
-               BlueprintName = "InterviewSample"
-               ReferencedContainer = "container:InterviewSample.xcodeproj">
+               BuildableName = "MusicAppDemo.app"
+               BlueprintName = "MusicAppDemo"
+               ReferencedContainer = "container:MusicAppDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D68334BB2B335B52005090ED"
-               BuildableName = "InterviewSampleTests.xctest"
-               BlueprintName = "InterviewSampleTests"
-               ReferencedContainer = "container:InterviewSample.xcodeproj">
+               BuildableName = "MusicAppDemoTests.xctest"
+               BlueprintName = "MusicAppDemoTests"
+               ReferencedContainer = "container:MusicAppDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D65346852B1A863E00467B74"
-            BuildableName = "InterviewSample.app"
-            BlueprintName = "InterviewSample"
-            ReferencedContainer = "container:InterviewSample.xcodeproj">
+            BuildableName = "MusicAppDemo.app"
+            BlueprintName = "MusicAppDemo"
+            ReferencedContainer = "container:MusicAppDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -73,9 +73,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D65346852B1A863E00467B74"
-            BuildableName = "InterviewSample.app"
-            BlueprintName = "InterviewSample"
-            ReferencedContainer = "container:InterviewSample.xcodeproj">
+            BuildableName = "MusicAppDemo.app"
+            BlueprintName = "MusicAppDemo"
+            ReferencedContainer = "container:MusicAppDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
