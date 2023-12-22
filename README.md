@@ -1,7 +1,6 @@
 # Music App Demo
 Hi! This is a demo music player app. It is built on top of [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/Searching.html#//apple_ref/doc/uid/TP40017632-CH5-SW1).
-![image](preview/readme.png)
-![image](preview/player.gif)
+<img src="preview/screenshots.png" width="425"/> <img src="preview/player.gif" width="140"/> 
 
 ## Features
 - Search screen with infinite scroll, refresh, debouncing and error handling
