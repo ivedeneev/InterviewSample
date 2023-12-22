@@ -1,6 +1,6 @@
 import Foundation
 
-class FakePlayer: AudioPlayer {
+final class FakePlayer: AudioPlayer {
     weak var delegate: AudioPlayerDelegate?
     
     var volume: Double = 0.3

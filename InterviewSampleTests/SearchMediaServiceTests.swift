@@ -4,53 +4,81 @@ import XCTest
 
 class SearchMediaServiceTests: XCTestCase {
     
-    var httpClient: HttpClientImpl!
+    var httpClient: MockHttpClient!
     var session: URLSession!
     var requestBuilder: RequestBuilderImpl!
     var decoder: JSONDecoder!
     
     var service: SearchMediaServiceImpl!
     
-    override func setUp() async throws {
-        try await super.setUp()
-        let config = URLSessionConfiguration.ephemeral
-        config.protocolClasses = [MockURLProtocol.self]
-        session = URLSession(configuration: config)
-        httpClient = HttpClientImpl(session: session)
+    override func setUp() {
+        httpClient = MockHttpClient()
         decoder = Dependencies.shared.jsonDecoder()
-        
         service = SearchMediaServiceImpl(httpClient: httpClient, decoder: decoder)
+        super.setUp()
     }
     
-    func testSearchMethodSendsCorrectArgumentsAndReturns() async throws {
-        let expectedData = try dataFromJsonFile(path: "search")
-        var requestUrl: URL?
-        MockURLProtocol.requestHandler = { request in
-            requestUrl = request.url
-            return try (HTTPURLResponse(url: request.url, statusCode: 200, headers: [:]), expectedData)
+    override func tearDown() {
+        httpClient = nil
+        decoder = nil
+        service = nil
+        super.tearDown()
+   }
+    
+    func testSearch() async throws {
+        // Mocking response data for albums method
+        let mockResponse = MediaListResponse(
+            resultCount: 2,
+            results: [
+                Media(wrapperType: .collection),
+                Media(wrapperType: .track)
+            ]
+        )
+        httpClient.stubResponse = mockResponse
+        
+        do {
+            let result = try await service.searchMedia(query: "song", limit: 10, offset: 0)
+            XCTAssertEqual(mockResponse, result)
+        } catch {
+            XCTFail("Unexpected error: \(error.localizedDescription)")
         }
+    }
+    
+    func testAlbums() async throws {
+        // Mocking response data for albums method
+        let mockResponse = MediaListResponse(
+            resultCount: 2,
+            results: [
+                Media(wrapperType: .collection),
+                Media(wrapperType: .track) // This shouldn't be included in the returned array
+            ]
+        )
+        httpClient.stubResponse = mockResponse
         
-        let query = "cream soda"
-        let limit = 10
-        let offset = 0
-        let result = try await service.searchMedia(query: query, limit: limit, offset: offset)
-        let expectedResponse = try decoder.decode(MediaListResponse.self, from: expectedData)
-
-        // check if all the arguments are indeed respected in the request
-        guard let requestUrl,
-              let queryItems = URLComponents(url: requestUrl, resolvingAgainstBaseURL: true)?.queryItems
-        else {
-            throw Errors.urlQueryMissing
+        do {
+            let result = try await service.albums(artistId: 123)
+            XCTAssertEqual(result.count, 1, "Should return only items with wrapperType .collection")
+        } catch {
+            XCTFail("Unexpected error: \(error.localizedDescription)")
         }
-        let termComp = queryItems.first(where: { $0.value == query })
-        let limitComp = queryItems.first(where: { $0.name == "limit" && $0.value == "\(limit)" })
-        let offsetComp = queryItems.first(where: { $0.name == "offset" && $0.value == "\(offset)" })
+    }
+    
+    func testSongs() async throws {
+        // Mocking response data for songs method
+        let mockResponse = MediaListResponse(
+            resultCount: 2,
+            results: [
+                Media(wrapperType: .collection), // This shouldn't be included in the returned array
+                Media(wrapperType: .track)
+            ]
+        )
+        httpClient.stubResponse = mockResponse
         
-        XCTAssertNotNil(termComp)
-        XCTAssertNotNil(limitComp)
-        XCTAssertNotNil(offsetComp)
-        
-        // compare expected and actualResponse
-        XCTAssertEqual(result, expectedResponse)
+        do {
+            let result = try await service.songs(artistId: 123)
+            XCTAssertEqual(result.count, 1, "Should return only items with wrapperType .track")
+        } catch {
+            XCTFail("Unexpected error: \(error.localizedDescription)")
+        }
     }
 }

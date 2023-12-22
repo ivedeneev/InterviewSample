@@ -17,7 +17,7 @@ struct SearchView: View {
                     .buttonStyle(ListButtonStyle())
                 }
                 
-                if viewModel.state.hasNextPage {
+                if viewModel.state.hasNextPage && !viewModel.state.media.isEmpty {
                     lastRowView
                 }
             }
@@ -41,13 +41,11 @@ struct SearchView: View {
     
     @ViewBuilder
     private var lastRowView: some View {
-        if viewModel.state.hasNextPage {
-            LoadingView()
-                .frame(maxWidth: .infinity)
-                .onAppear {
-                    viewModel.sendAction(.loadNextPage)
-                }
-        }
+        LoadingView()
+            .frame(maxWidth: .infinity)
+            .onAppear {
+                viewModel.sendAction(.loadNextPage)
+            }
     }
     
     @ViewBuilder

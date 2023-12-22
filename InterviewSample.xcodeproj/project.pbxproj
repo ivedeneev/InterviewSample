@@ -14,6 +14,8 @@
 		D62DD40B2B349F8F00537987 /* RequestBuilderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62DD40A2B349F8F00537987 /* RequestBuilderImpl.swift */; };
 		D62DD40D2B34A07900537987 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62DD40C2B34A07900537987 /* Dependencies.swift */; };
 		D62DD40F2B34A7BE00537987 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62DD40E2B34A7BE00537987 /* EmptyView.swift */; };
+		D62DD4132B35B49700537987 /* Media+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62DD4122B35B49700537987 /* Media+Mock.swift */; };
+		D62DD4152B35B7EB00537987 /* MockHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62DD4142B35B7EB00537987 /* MockHttpClient.swift */; };
 		D630662F2B1E89070051FBDD /* ArtistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630662E2B1E89070051FBDD /* ArtistViewModel.swift */; };
 		D63066332B1E92570051FBDD /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63066322B1E92570051FBDD /* ListHeaderView.swift */; };
 		D63066352B1E94FA0051FBDD /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63066342B1E94FA0051FBDD /* ViewModelType.swift */; };
@@ -82,6 +84,8 @@
 		D62DD40A2B349F8F00537987 /* RequestBuilderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilderImpl.swift; sourceTree = "<group>"; };
 		D62DD40C2B34A07900537987 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		D62DD40E2B34A7BE00537987 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		D62DD4122B35B49700537987 /* Media+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Media+Mock.swift"; sourceTree = "<group>"; };
+		D62DD4142B35B7EB00537987 /* MockHttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHttpClient.swift; sourceTree = "<group>"; };
 		D630662E2B1E89070051FBDD /* ArtistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistViewModel.swift; sourceTree = "<group>"; };
 		D63066322B1E92570051FBDD /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
 		D63066342B1E94FA0051FBDD /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
@@ -393,6 +397,8 @@
 				D68334CE2B335B62005090ED /* Errors.swift */,
 				D68334CF2B335B62005090ED /* MockNetworkRequest.swift */,
 				D62DD4022B34706100537987 /* MockSearchMediaService.swift */,
+				D62DD4122B35B49700537987 /* Media+Mock.swift */,
+				D62DD4142B35B7EB00537987 /* MockHttpClient.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -559,6 +565,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D62DD4132B35B49700537987 /* Media+Mock.swift in Sources */,
 				D68334D82B335BB7005090ED /* MockNetworkRequest.swift in Sources */,
 				D62DD4032B34706100537987 /* MockSearchMediaService.swift in Sources */,
 				D68334D22B335BA4005090ED /* HTTPURLResponse+Extension.swift in Sources */,
@@ -569,6 +576,7 @@
 				D68334D32B335BA7005090ED /* MockURLProtocol.swift in Sources */,
 				D68334D02B335B63005090ED /* RequestBuilderTests.swift in Sources */,
 				D62DD4012B346F1300537987 /* SearchViewModelTests.swift in Sources */,
+				D62DD4152B35B7EB00537987 /* MockHttpClient.swift in Sources */,
 				D62DD4052B34752200537987 /* XCTestCase+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

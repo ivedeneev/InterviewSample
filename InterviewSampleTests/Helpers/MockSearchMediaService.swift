@@ -3,21 +3,25 @@ import Foundation
 
 final class MockSearchMediaService: SearchMediaService {
     
-    static var mediaListResponse: MediaListResponse?
+    var stubResponse: MediaListResponse?
     
     func searchMedia(query: String, limit: Int, offset: Int) async throws -> MediaListResponse {
-        guard let response = Self.mediaListResponse else {
+        try returnStubResponse()
+    }
+    
+    func albums(artistId: Int) async throws -> [Media] {
+        try returnStubResponse().results
+    }
+    
+    func songs(artistId: Int) async throws -> [Media] {
+        try returnStubResponse().results
+    }
+    
+    private func returnStubResponse() throws -> MediaListResponse {
+        guard let response = stubResponse else {
             throw Errors.dataIsMissingOrInIncorrectFormat
         }
         
         return response
-    }
-    
-    func albums(artistId: Int) async throws -> [Media] {
-        fatalError("Not implemented")
-    }
-    
-    func songs(artistId: Int) async throws -> [Media] {
-        fatalError("Not implemented")
     }
 }

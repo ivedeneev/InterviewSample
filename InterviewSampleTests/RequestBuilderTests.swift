@@ -64,7 +64,7 @@ class RequestBuilderTests: XCTestCase {
     func testHTTPBodyIsEncodedCorrectly() throws {
         let paramaters = ["a": "b", "c": "d"]
         let request = MockNetworkRequest(
-            baseURL: "https://github.ru",
+            baseURL: "https://github.com",
             path: "some",
             parameters: paramaters,
             headers: [:],

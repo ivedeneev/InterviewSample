@@ -3,11 +3,15 @@ import Foundation
 
 final class SearchViewModel: ViewModelType {
     
-    @Published private(set) var state: State = .init()
+    @Published private(set) var state: State
     private let searchService: SearchMediaService
     private var searchTask: Task<Void, Never>?
     
-    init(searchService: SearchMediaService = Dependencies.shared.searchService()) {
+    init(
+        state: State = .init(),
+        searchService: SearchMediaService = Dependencies.shared.searchService()
+    ) {
+        self.state = state
         self.searchService = searchService
     }
     
@@ -17,6 +21,7 @@ final class SearchViewModel: ViewModelType {
             cancelSearchTask()
             state.bulkUpdate { state in
                 state.searchQuery = query
+                state.hasNextPage = !query.isEmpty
                 guard !query.isEmpty else {
                     state.media = []
                     return
@@ -37,8 +42,11 @@ final class SearchViewModel: ViewModelType {
             cancelSearchTask()
         }
         
+        let shouldSendRequest = (state.hasNextPage || refresh) && !state.searchQuery.isEmpty
+        guard shouldSendRequest else { return }
+        
         do {
-            let limit = 10
+            let limit = state.limit
             let offset = refresh ? 0 : state.media.count
             let response = try await searchService.searchMedia(query: state.searchQuery, limit: limit, offset: offset)
             
@@ -58,6 +66,9 @@ final class SearchViewModel: ViewModelType {
         } catch {
             state.bulkUpdate { state in
                 state.error = error.localizedDescription
+                /// To prevent multiple state updates i put `state.isLoading = false` to the bulk update block (line 61).
+                /// So i have to duplicate this line for an error branch.
+                /// If it is not an issue it is reaonable to put this line into `defer` statement and avoid code duplication
                 state.isLoading = false
             }
         }
@@ -83,5 +94,6 @@ extension SearchViewModel {
         var hasNextPage: Bool = false
         var isLoading = false
         var error: String?
+        var limit = 10
     }
 }

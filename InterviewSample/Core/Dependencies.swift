@@ -1,7 +1,7 @@
 import Foundation
 
 // Naive implementation of Di container
-class Dependencies {
+final class Dependencies {
     
     static let shared = Dependencies()
     private init() {}

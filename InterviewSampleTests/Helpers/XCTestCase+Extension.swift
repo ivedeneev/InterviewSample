@@ -5,15 +5,27 @@ extension XCTestCase {
 
     private static let awaitTimeout: TimeInterval = 1
 
+    
     @discardableResult
-    func is_awaitSequence<T: Publisher>(
+    /// Helper method to collect all the values emmited by given publisher into array
+    /// - Parameters:
+    ///   - publisher: publisher to observe
+    ///   - timeout: how long sho
+    ///   - completeOnTimeout:
+    ///   - skipInitialValue: if true skips initial value of `@Published` property
+    ///   - file: no doc
+    ///   - line: no doc
+    ///   - externalModifications: actions that will trigger publisher updates
+    /// - Returns: Array of values from given publisher
+    func valuesFromPublished<T: Publisher>(
         _ publisher: T,
         timeout: TimeInterval = awaitTimeout,
         completeOnTimeout: Bool = true,
+        skipInitialValue: Bool = true,
         file: StaticString = #file,
         line: UInt = #line,
         externalModifications: (() -> Void)? = nil
-    ) -> [SequenceElement<T.Output, T.Failure>] {
+    ) -> [T.Output] {
         var result: [SequenceElement<T.Output, T.Failure>] = []
 
         let expectation = expectation(description: "Awaiting publisher")
@@ -45,7 +57,7 @@ extension XCTestCase {
 
         cancellable.cancel()
 
-        return result
+        return Array(result.compactMap { $0.value }.dropFirst(skipInitialValue ? 1 : 0))
     }
 }
 
